@@ -1,0 +1,436 @@
+﻿@{
+    ViewBag.Title = "AddDetailsPage";
+    Layout = null;
+}
+
+@model asp.netwebmvcWebsite.Models.sowmyaMatrimony
+
+
+<html>
+<head>
+    <title>Add Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/AddDetailsPage.css" rel="stylesheet" />
+</head>
+<body>
+    @*<div id="head">*@
+
+    @*</div>*@ 
+    
+    <div class="welcomecontainer">
+        @Html.Partial("head")
+        <div class="registrationpage">
+
+           <div class="Addprofile">
+
+                @using (Html.BeginForm("AddDetailsPage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="heading">
+                        <p>  @Html.ActionLink("Back", "Payment") </p>
+                        <h2 style="text-align:center;">Add Details</h2>
+                    </div>
+
+                    <div class="form-container">
+                        <div class="errors" style=" color:red; font-size:12px">
+                            @ViewBag.Failure<br>
+                            @Html.ValidationSummary("", "")
+                        </div>
+
+                        <!-- Registered Email ID -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.RegisteredEmailId, "Email :  ")
+                                @if (Session["email"] != null)
+                                {
+                                    <label> @Session["email"] </label>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Name, "Name :")
+
+                                @Html.TextBoxFor(model => model.Name, new { @placeholder = "Enter your Name", @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Surname -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Surname, "Surname: ")
+                                @Html.TextBoxFor(model => model.Surname, new { @placeholder = "Enter your Surname", @class = "form-control" })
+                            </div> @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Age, "Age: ")
+                                @Html.TextBoxFor(model => model.Age, new { @placeholder = "Enter your Age", @class = "form-control" })
+                            </div>   @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Gender, "Gender: ")
+                                @* @Html.DropDownListFor(model => model.Gender, new SelectList(new[] { "Male", "Female" }), "Select Gender", new { @class = "form-control" })*@
+                                <div class="labelinput" style="Display:flex;width:50% " ,class="col 2">
+                                    @Html.RadioButtonFor(model => model.Gender, "Male", new { @text = "Male" })
+                                    @Html.Label("Male")
+                                    @Html.RadioButtonFor(model => model.Gender, "Female", new { @text = "Female" })
+                                    @Html.Label("Female")
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.DOB, "Date of Birth: ")
+                                @Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @placeholder = "YYYY-MM-DD" })
+                            </div>   @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Time of Birth -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.TOB, "Time of Birth: ")
+                                @Html.TextBoxFor(model => model.TOB, new { @type = "time", @class = "form-control", @placeholder = "HH:MM 24 hr format" })
+                            </div>  @Html.ValidationMessageFor(model => model.TOB, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Place of Birth -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.PlaceOfBirth, "Place of Birth: ")
+                                @Html.TextBoxFor(model => model.PlaceOfBirth, new { @placeholder = "Enter your Place of Birth", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- candidate place -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.CandiatePlace, "Place of Living: ")
+                                @Html.TextBoxFor(model => model.CandiatePlace, new { @placeholder = "Enter your Place of Living", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.CandiatePlace, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Raasi -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Raasi, "Raasi: ")
+
+                                @Html.TextBoxFor(model => model.Raasi, new { @placeholder = "Enter Raasi", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.Raasi, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Star -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Star, "Star: ")
+                                @Html.TextBoxFor(model => model.Star, new { @placeholder = "Enter Star", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.Star, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Occupation -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Occupation, "Occupation: ")
+                                @Html.TextBoxFor(model => model.Occupation, new { @placeholder = "Enter your Occupation", @class = "form-control" })
+                            </div>   @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.CandiateContact, "Contact Number of Bride/Broom: ")
+                                @Html.TextBoxFor(model => model.CandiateContact, new { @placeholder = "Enter Contact Number of Bride/Broom", @class = "form-control" })
+                            </div>   @Html.ValidationMessageFor(model => model.CandiateContact, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- MotherName -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.MotherName, "MotherNamer: ")
+                                @Html.TextBoxFor(model => model.MotherName, new { @placeholder = "Enter MotherNamer", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- MotherOccupation -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.MotherOccupation, "Mother Occupation: ")
+                                @Html.TextBoxFor(model => model.MotherOccupation, new { @placeholder = "Enter Mother Occupation", @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.MotherOccupation, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- MotherPlace -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.MotherPlace, "Mother Place: ")
+                                @Html.TextBoxFor(model => model.MotherPlace, new { @placeholder = "Enter Mother Place", @class = "form-control" })
+                            </div>    @Html.ValidationMessageFor(model => model.MotherPlace, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- MotherContact -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.MotherContact, "Mother Contact: ")
+                                @Html.TextBoxFor(model => model.MotherContact, new { @placeholder = "Enter Mother Contact", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.MotherContact, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- FatherName -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.FatherName, "Father Name: ")
+                                @Html.TextBoxFor(model => model.FatherName, new { @placeholder = "Enter Father Name", @class = "form-control" })
+                            </div>   @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- FatherOccupation -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.FatherOccupation, "Father Occupation: ")
+                                @Html.TextBoxFor(model => model.FatherOccupation, new { @placeholder = "Enter Father Occupation", @class = "form-control" })
+                            </div>  @Html.ValidationMessageFor(model => model.FatherOccupation, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- FatherContact -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.FatherContact, "Father Contact: ")
+                                @Html.TextBoxFor(model => model.FatherContact, new { @placeholder = "Enter Father Contact", @class = "form-control" })
+                            </div>    @Html.ValidationMessageFor(model => model.FatherContact, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- FatherPlace -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.FatherPlace, "Father Place: ")
+                                @Html.TextBoxFor(model => model.FatherPlace, new { @placeholder = "Enter Father Place", @class = "form-control" })
+                            </div>    @Html.ValidationMessageFor(model => model.FatherPlace, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- CandiateEmailID -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.CandiateEmailID, "Candiate EmailID: ")
+                                @Html.TextBoxFor(model => model.CandiateEmailID, new { @placeholder = "Enter Candiate EmailID", @class = "form-control" })
+                            </div>    @Html.ValidationMessageFor(model => model.CandiateEmailID, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- Saakha -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.LabelFor(model => model.Saakha, "Saakha: ")
+                                @Html.TextBoxFor(model => model.Saakha, new { @placeholder = "Enter Saakha", @class = "form-control" })
+                            </div>   @Html.ValidationMessageFor(model => model.Saakha, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- MainImage1 -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.Label("Image 1: ")
+                                <input type="file" id="Image1" name="MainImage1FilePath" accept="image/*" />
+                                <img id="preview1" name="MainImage1" src=" " />
+                                <img src="@ViewBag.Image1" id="afterupload1" />   <br>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.MainImage1FilePath, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Image2 -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                <label>Image 2:</label>
+                                <input type="file" id="Image2" name="Image2FilePath" accept="image/*" />
+                                <img id="preview2" name="Image2" src=" " />
+                                <img src="@ViewBag.Image2" id="afterupload2" />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Image2FilePath, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <!-- Image3 -->
+                        <div class="form-group">
+                            <div class="labelinput" style="Display:flex;" ,class="col 2">
+                                @Html.Label("Image 3: ")
+                                <input type="file" id="Image3" name="Image3FilePath" accept="image/*" />
+                                <img id="preview3" name="Image3" src=" " />
+                                <img src="@ViewBag.Image3" id="afterupload3" />
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Image3FilePath, "", new { @class = "text-danger" })
+                        </div>
+                        <br>
+                        <!-- Submit Button -->
+                        <div class="form-group" style="align-items:center">
+                            <button type="submit" class="btn btn-primary" onclick="save()">Submit</button>
+                            <button type="reset">Reset</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        </div>
+        <script>
+      function previewImage(input, previewId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(previewId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+      }
+
+     document.getElementById('Image1').addEventListener('change', function () {
+        previewImage(this, 'preview1');
+     });
+
+     document.getElementById('Image2').addEventListener('change', function () {
+        previewImage(this, 'preview2');
+         });
+
+     document.getElementById('Image3').addEventListener('change', function () {
+        previewImage(this, 'preview3');
+        });
+
+        function save(){
+
+  var file=$("#Image2").get(0).files;
+        var data= new FormData;
+        data.append("Image2",$("#Image2").val());
+    }
+        </script>
+</body>
+
+</html>
+
+
+<style>
+    .welcomecontainer {
+        height: 100vh; /* 95vh;  auto   */
+        width: auto;
+        /*display: flex;
+            flex-direction: row;*/
+        background-color: black;
+    }
+
+    .registrationpage {
+    margin:0;
+    padding:10px;
+    height:calc(100%-10%);
+    background-color:black;
+    overflow:hidden;
+    }
+
+    form{
+        margin:0px;
+    }
+    .Addprofile {
+        background-color: black;
+        margin: 0px;
+        padding:5px;
+    }
+
+
+    .heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color:black;
+    }
+
+        .heading p {
+            position: absolute;
+            left: 0;
+        }
+
+        .heading h2 {
+            text-align: center;
+            flex-grow: 1;
+            color: whitesmoke;
+            font-weight: bold;
+        }
+
+
+   #preview1 , #preview2, #preview3, #MainImage1, #afterupload1, #afterupload2, #afterupload3 {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+        display: block;
+    }
+
+    .form-container {
+        width: fit-content;
+        margin: auto;
+        padding: 20px;
+        /* border: 1px solid #ccc;*/
+        border-radius: 25px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        border: 5px solid white;
+        padding-top: 20px;
+        background-color: black;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(45deg,pink,Darkblue);
+        animation: rotate-border 2s infinite;
+        border-radius: 0.5%; /* Optional rounded corners */
+        animation: rotate-border 2s linear infinite;
+        /*  margin-top:10px;*/
+    }
+       
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: white;
+        width: 50%;
+        font-size:14px;
+    }
+
+    input[type="text"], input[type="password"], input[type="date"], input[type="time"], input[type="file"], select, textarea {
+        width: 50%;
+        padding: 5px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        height: 50px;
+        font-size:14px;
+    }
+
+    label, input {
+        display: flex;
+    }
+
+
+    button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+
+

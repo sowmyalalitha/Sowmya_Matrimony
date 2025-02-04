@@ -1,0 +1,30 @@
+﻿body {
+    width: 100%; /* Make image responsive */
+    height: 100%;
+}
+/* change to column on smaller screens*/
+@media only screen and (max-width:600px) /*and (min-width:300px)*/
+{
+    .welcomecontainer {
+        flex-direction: column;
+        height: 100%;
+        background-color: black;
+    }
+
+    .image {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #login {
+        width: 500px;
+        height: 50%;
+        background-color: black;
+        margin: 10px;
+    }
+
+    .links{display:flex;
+           flex-direction:row;
+           justify-content:center;
+    }
+}

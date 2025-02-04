@@ -1,0 +1,77 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model asp.netwebmvcWebsite.Models.NameModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>filetofolder</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("filetofolder", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label>Name: </label>
+        @Html.TextBoxFor(model => model.name ,new { @placeholder = "Enter Name", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        <br>
+        <input type="file" name="file1" id="file11" accept="image/*" />
+        <img id="preview1" name="Image1" alt="preview 1" src=" ",  style=" height:50px; width:50px;" />
+        <label>  @ViewBag.Message1  </label>
+
+        <br>
+        <input type="file" name="file2" id="file22" accept="image/*" />
+        <img id="preview2" name="Image2" alt="preview  2" src=" " , style=" height:50px; width:50px;" />
+        <label>  @ViewBag.Message2 </label>
+        <br>
+        <input type="file" name="file3" id="file33" accept="image/*" />
+        <img id="preview3" name="Image3" alt="preview  2" src=" " , style=" height:50px; width:50px;" />
+        <label>  @ViewBag.Message3    </label>
+
+
+       
+
+
+        <br>
+        <input type="submit" value="save images" class="border-success" />
+
+        <p>@ViewBag.Errors</p>
+
+
+    }
+
+    </div>
+
+
+
+    <script>
+      function previewImage(input, previewId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(previewId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+      }
+
+      document.getElementById('file11').addEventListener('change', function () {
+        previewImage(this, 'preview1');
+     });
+
+      document.getElementById('file22').addEventListener('change', function () {
+        previewImage(this, 'preview2');
+         });
+
+      document.getElementById('file33').addEventListener('change', function () {
+        previewImage(this, 'preview3');
+        });
+    </script>
+</body>
+</html>

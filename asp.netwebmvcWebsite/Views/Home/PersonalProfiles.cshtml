@@ -1,0 +1,180 @@
+﻿
+@model IEnumerable<asp.netwebmvcWebsite.Models.PhotoViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="welcomecontainer">
+        <div id="head">
+            @Html.Partial("head")
+        </div>
+
+        <div class="heading"><h2>Your Profiles</h2> </div>
+        <div class="errors" style="color:white;">
+            @Html.ValidationSummary("", "")
+        </div>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+    <script>
+            alert('@ViewBag.ErrorMessage'); // Display the error message in an alert box
+    </script>}
+
+        <div class="photoName">
+            @foreach (var item in Model)
+            {
+                <div class="imagename">
+                    <a href="@Url.Action("DetailView", "Home", new { Name = item.Name })">
+                        <img src="@Url.Content(item.MainImage1FilePath)" id="image" />
+                        <br>
+                        <label id="name">@item.Name </label>
+                    </a>
+                    <br>
+                    <p style="display:flex">
+                        @Html.ActionLink("Delete", "Delete", "Home", new { Name = item.Name }, new
+                        {
+                            @class = "btn btn-danger",
+                          onclick = "return confirm('Are you sure you want to delete this record?');"
+                        })
+                        @Html.ActionLink("Update", "UpdateProfile", "Home", new { Name = item.Name }, new { @class = "btn btn-primary" })
+                    </p>
+                </div>
+            }
+
+
+        </div>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                 alert('@TempData["SuccessMessage"]');
+            </script>
+        } @* Display Error Message *@
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <script>
+             alert('@TempData["ErrorMessage"]');
+            </script>
+
+        }
+
+
+
+
+    </div>
+
+
+        <style>
+
+            .welcomecontainer {
+                height: 100vh; /* 95vh;  auto   */
+                width: auto;
+                /*display: flex;
+            flex-direction: row;*/
+                background-color: black;
+            }
+
+            .PersnolProfile {
+                Padding: 20px;
+            }
+
+                .PersnolProfile label {
+                    color: white;
+                    margin: 10px;
+                }
+
+            #personalprofilebtn {
+                background-color: darkblue;
+                text-decoration: none;
+                border: 2px solid white;
+                border-radius: 25%;
+                text-decoration-color: white;
+                padding: 10px;
+            }
+
+                #personalprofilebtn:hover {
+                    background-color: darkblue;
+                    text-decoration: none;
+                    border: 2px solid white;
+                    border-radius: 25%;
+                    box-shadow: 4px 4px 20px white;
+                    padding: 10px;
+                }
+
+            .photoName {
+                margin: 5px 20px 10px 20px; /* top right bottom left*/
+                padding: 30px 40px 30px 40px; /* top right bottom left*/
+                border: 2px solid white;
+                border-radius: 25%;
+                background-color: black;
+                display: flex;
+                flex-wrap:wrap;
+            }
+
+            .heading h2 {
+                color: white;
+                text-shadow: 2px,2px,4px,rgba(0, 0, 0, 0.5);
+                text-align: center;
+                justify-content: center;
+            }
+
+            #image {
+                width: 150px;
+                height: 150px;
+                border-radius: 25%;
+                border: 3px solid white;
+            }
+
+            #name {
+                color: white;
+                text-align: center;
+            }
+
+            .imagename {
+                background-color: darkblue;
+                padding: 20px 20px 5px 20px; /* top right bottom left*/
+                margin: 10px;
+                border: 3px solid white;
+                border-radius: 25%;
+                width: 200px;
+              /*  flex-grow:1;
+                flex-basis:200;*/
+            }
+
+            .btn {
+                text-decoration: none; /* Remove underline */
+                /* padding: 10px ;  /* top right bottom left*/
+                border-radius: 5px;
+                text-align: center;
+                justify-content: flex-start;
+                margin: 0px 5px 0 0;
+            }
+
+            .btn-danger {
+                color: white;
+                background-color: red;
+                border: 2px solid red;
+                text-align: center;
+                padding-bottom: 2px;
+                text-align: center;
+                /* transition: background-color; 0.3s ease;  Smooth hover effect */
+                /*}
+
+            .btn-danger:hover {
+                background-color: darkred;
+            }
+        </style>
+</body>
+
+</html>

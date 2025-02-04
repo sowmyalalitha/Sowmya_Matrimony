@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<partial>
+    <nav>
+        <div class="header-content">
+            <div class="heading">
+            <h2>Sowmya Matrimony</h2> </div>
+            <div class="emailbutton">
+              @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") != null)
+                {
+                <span>Email: @HttpContextAccessor.HttpContext.Session.GetString("UserEmail")</span> }
+               else
+               {
+                <span></span>
+                }
+              <input id="btn" type="button" value="Logout" asp-action="Logout" asp-controller="Home" class="btn-danger" >
+        
+            </div>
+        </div>
+    </nav>
+
+    <style>
+       .heading .emailbutton{
+           display:flex;
+            /*align-items:flex-end;*/
+            gap:50px;
+            align-content:space-between;
+
+
+        }
+       #btn{
+           align-content:flex-end;
+           
+       }
+        .btn-danger:hover {
+            color: white;
+            background-color: red;
+            border-color: white;
+            align-content: flex-end;
+            margin:5px;
+
+        }
+        .btn-danger {
+            border: 2px solid white;
+            background-color: blue;
+            align-content: flex-end;
+            margin: 20px;
+            height:30px;
+            width:fit-content;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height:5vh;
+        }
+            .header-content h2 {
+                margin: 0;
+            }
+
+            .header-content span {
+                margin-right: 10px;
+            }
+        nav{
+            background-color:darkblue;
+            display:flex;
+            justify-items:flex-start;
+            
+            width:100%;
+            
+        }
+        h2,span{color:white;}
+    </style>
+
+</partial>

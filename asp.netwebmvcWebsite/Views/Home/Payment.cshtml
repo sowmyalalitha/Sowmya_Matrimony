@@ -1,0 +1,362 @@
+﻿@{
+    ViewBag.Title = "Payment";
+    Layout = null;
+}
+
+@model asp.netwebmvcWebsite.Models.User
+
+
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Payment</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
+</head>
+<body>
+
+    @*@Html.Partial("head")*@
+    <div class="welcomecontainer">
+      
+            <div id="head">
+                @Html.Partial("head")
+            </div>
+            <div id="paymentformm">
+
+                @using (@Html.BeginForm("Payment", "Home", FormMethod.Post))
+                {
+
+                    <div id="alertform"
+                         style="display:@(TempData["BridePaymentSuccess"] != null || TempData["BroomPaymentSuccess"]  != null|| TempData["AddDetailsPaymentSuccess"] != null ? "flex" : "none");">
+
+                        @if (TempData["BridePaymentSuccess"] != null)
+                        {
+                            <div class="alert alert-success"
+                                 style="display:@(TempData["BridePaymentSuccess"] != null  ? "flex" : "none"); ">
+                                <p>@TempData["BridePaymentSuccess"] </p><button id="close" class="close" style="color:red" data-dismiss="alert"><span>&times;</span></button>
+                            </div>
+                        }
+                        else if (TempData["BroomPaymentSuccess"] != null)
+                        {
+                            <div class="alert alert-success" style=" display: @(TempData["BroomPaymentSuccess"] != null  ? "flex" : "none"); ">
+                                <p>@TempData["BroomPaymentSuccess"]</p>  <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                            </div>
+                        }
+                        else if (TempData["AddDetailsPaymentSuccess"] != null)
+                        {
+                            <div class="alert alert-success" style=" display: @(TempData["AddDetailsPaymentSuccess"] != null  ? "flex" : "none"); ">
+                                <p>@TempData["AddDetailsPaymentSuccess"]</p>  <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                            </div>
+                        }
+
+                    </div>
+                    <div id="form" style="margin:0">
+                        <div id="ToViewBride">
+                            <div id="heading"> <h3> Bride </h3></div>
+                            <div id="viewSection" style="margin-top:0px;">
+                                <div id="Image">  <img src="~/Images/Bride.jpg" id="img" /> </div>
+                            </div>
+                            <h5><b>To view Bride</b></h5>
+                            <div id="viewSection" style="display: @( ViewBag.Brideview == "ToviewBride" ? "block" : "none");">
+                                @Html.ActionLink("View Bride", "BridePage", "Home", new { @id = "btnview" })
+                            </div>
+                            <div id="viewSection">
+                                <div id="paymentSection" style="display: @( ViewBag.Brideview == "ToviewBride" ? "none" : "block");">
+                                    <form>
+                                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PRTA1a8Ud9CNIu" async></script>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="ToViewBroom">
+                            <div id="heading"> <h3> Broom </h3> </div>
+                            <div id="viewSection">  <div id="Image"> <img src="~/Images/Broom.jpg" id="img" />  </div> </div>
+                            <h5><b>To view Broom</b></h5>
+                            <div id="viewSection" style="display: @(  ViewBag.Broomview == "ToviewBroom" ? "block" : "none");">
+                                @Html.ActionLink("View Broom", "BroomPage", "Home", new { @id = "btnview" })
+                            </div>
+                            <div id="viewSection">
+                                <div id="paymentSection" style="display: @( ViewBag.Broomview == "ToviewBroom" ? "none" : "block");">
+                                    <form>
+                                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OTNCAidxlfC7Yo" async></script>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ToAddDetails">
+                            <div id="heading"><h3>Add Profile Details</h3> </div>
+                            <div id="viewSection">  <div id="Image"> <img src="~/Images/marriageimage.jpg" id="img" /> </div>   </div>
+                            <h5><b>To Add Details</b></h5>
+                            <div id="viewSection" style="display: @(  ViewBag.AddProfileview == "ToviewAddProfile" ? "block" : "none");">
+                                @Html.ActionLink("Add Details", "AddDetailsPage", "Home", new { @id = "btnview" })
+                            </div>
+
+                            <div id="viewSection">
+                                <div id="paymentSection" style="display: @( ViewBag.AddProfileview == "ToviewAddProfile" ? "none" : "block");">
+                                    <form>
+                                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PoYGzucMEicg2W" async></script>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+
+        <script>
+    document.getElementId("close").addEventListener("click" ,function(){
+    document.getElementId("alertform").style.display="none";  });
+
+    if(@TempData["BridePaymentSuccess"] == null || @TempData["BroomPaymentSuccess"]  == null|| @TempData["AddDetailsPaymentSuccess"] == null ){
+        document.getElementId("alertform").style.display="none"; }
+        </script>
+
+
+
+        <style>
+            .welcomecontainer {
+                min-height: 100vh; /* Ensures the height is at least 95% of the viewport */
+                height: auto;
+                width: auto;
+                /*display: flex;
+            flex-direction: row;*/
+                background-color: black;
+                padding-bottom: 10px;
+            }
+
+            #paymentformm{height:95%;}
+                #alertform {
+                    height: 10%;
+                    background-color: black;
+                    justify-content: center;
+                    margin: 0;
+                    padding-top: 15px;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .alert .alert-success {
+                    padding: 5px;
+                    height: 50px;
+                    display: flex;
+                    width: fit-content;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                #form {
+                    display: flex;
+                    flex-wrap: wrap;
+                    /* border: 5px solid white;*/
+                    /* border-radius: 25px;*/
+                    /* gap: 12px;*/
+                    color: blueviolet;
+                    height: contain; /*95vh;*/
+                    background-color: black;
+                    padding: 10px;
+                    margin: 0px;
+                }
+
+                #ToViewBride, #ToViewBroom, #ToAddDetails {
+                    flex-grow: 1;
+                    flex-basis: 200;
+                }
+
+                #ToViewBride {
+                    background-color: darkblue;
+                    border: 5px solid White;
+                    border-radius: 25px;
+                    margin: 10px;
+                    width: 30%;
+                    flex-grow: 1;
+                }
+
+                #ToAddDetails {
+                    background-color: darkblue;
+                    border: 5px solid White;
+                    border-radius: 25px;
+                    margin: 10px;
+                    width: 30%;
+                }
+
+                #ToViewBroom {
+                    background-color: darkblue;
+                    border: 5px solid White;
+                    border-radius: 25px;
+                    margin: 10px;
+                    width: 30%;
+                }
+
+
+
+                #Image {
+                    /*border: 2px dashed;
+                    border-color: white;*/
+                    margin: 10px;
+                    padding: 5px;
+                    justify-content: center;
+                    width: 100%;
+                    height: 50%;
+                    align-items: center;
+                    overflow: hidden;
+                    align-content: center;
+                    justify-items: center;
+                }
+
+                    #Image img {
+                        width: 60%;
+                        height: 100%;
+                        object-fit: cover;
+                        justify-content: center;
+                        margin-left: 30px;
+                        margin-right: 30px;
+                        border: 2px dashed;
+                        border-color: white;
+                    }
+
+                #heading h3 {
+                    text-align: center;
+                    color: white;
+                }
+
+                h5 {
+                    color: white;
+                    text-align: center;
+                }
+
+                #btn {
+                    justify-content: center;
+                    border-color: white;
+                    background-color: blue;
+                    text-decoration-color: white;
+                    align-items: center;
+                    align-content: center;
+                    justify-items: center;
+                    overflow: auto;
+                }
+
+                button {
+                    justify-content: center;
+                    border-color: white;
+                    background-color: blue;
+                    text-decoration-color: white;
+                    align-items: center;
+                    align-content: center
+                }
+
+                    button:hover {
+                        border-color: yellow;
+                        background-color: white;
+                        text-decoration-color: yellow;
+                        justify-content: center;
+                    }
+
+                #openModelBtn {
+                    margin: 20px;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    justify-content: center;
+                    align-items: center;
+                    overflow: auto;
+                }
+
+                .modal-content {
+                    background: yellow;
+                    padding: 20px;
+                    border-radius: 8px;
+                    text-align: center;
+                    position: relative;
+                }
+
+                .close-btn {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #333;
+                    cursor: pointer;
+                }
+
+                #fun1 {
+                    overflow: auto;
+                    width: 60%;
+                    justify-items: center;
+                }
+
+                #viewSection {
+                    text-align: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    padding: 5px;
+                    margin: 10px;
+                }
+                /* background-color: black;
+                    color: white;
+                    border-block-color: white;
+                    border-radius: 25%;
+                    width: auto;
+                    #viewSection:hover {
+                       background-color: grey;
+                        color: yellowgreen;
+                        border-block-color: yellowgreen;
+                        border-radius: 25%;
+                    }
+            */
+
+                #btnview {
+                    background-color: black;
+                    border: 2px solid white;
+                    text-decoration: none;
+                    text-align: center;
+                    justify-content: center;
+                    padding: 5px;
+                    color: white;
+                    border-radius: 25%;
+                }
+
+                    #btnview:hover {
+                        background-color: darkblue;
+                        color: chartreuse;
+                        border-block-color: chartreuse;
+                        border-radius: 25%;
+                        text-size-adjust: inherit;
+                    }
+
+                #paymentSection {
+                    justify-content: center;
+                    align-items: center;
+                }
+        </style>
+
+</body>
+</html>

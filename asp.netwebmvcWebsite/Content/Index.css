@@ -1,0 +1,34 @@
+﻿body {
+    width: 100%; /* Make image responsive */
+    height: 100%;
+}
+/* change to column on smaller screens*/
+@media only screen and (max-width:740px) /*and (min-width:300px)*/
+{
+    .welcomecontainer
+    {
+    flex-direction: column;
+    height: 100%;
+    background-color: black;
+    }
+    .image {
+    width: 100%;
+    height: 40%;
+
+    }
+    
+    .container {
+    width: 500px;
+    height: 50%;
+    background-color: black;
+    margin:10px;
+}
+
+    #register {
+        display: flex;
+        gap: 10px;
+        margin:0px;
+    }
+
+
+}

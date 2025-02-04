@@ -1,0 +1,348 @@
+﻿@{
+    ViewBag.Title = "Registration";
+    Layout = null;
+}
+
+
+@model  asp.netwebmvcWebsite.Models.User
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/Registration.css" rel="stylesheet" />
+    
+</head>
+<body>
+   <div class="welcomecontainer">
+      <div class="image"> <img src="../Images/marriageimage.jpg" ID="Image1" class="rounded float-start" />  </div>
+      <div class="registration">
+         
+         <div class="heading"><h2><b><i>Registration</i></b></h2> </div>     
+         <div class="form">
+           @using (@Html.BeginForm("Registration", "Home", FormMethod.Post))
+            {
+             <div class="form-container">
+                 <div class="form-group">
+                     <div class="label">
+                         @Html.LabelFor(model => model.RegisteredEmailId, "Email :")
+                     </div>
+                     <div class="input-group">
+                         @Html.TextBoxFor(model => model.RegisteredEmailId, new { @id = "Emailtxt", @type = "Email", @placeholder = "Enter your Email", @style = "width:100%;" })
+                         <div class="input-group-append" style="display:none">
+                             <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                 <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+
+                 @Html.ValidationMessageFor(model => model.RegisteredEmailId, "", new { @class = "text-danger" })
+
+
+                 <div class="form-group">
+                     <div class="label">
+                         @Html.LabelFor(model => model.Password, "Password: ")
+                     </div>
+                     <div class="input-group">
+                         @Html.PasswordFor(model => model.Password, new { @id = "Passwordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password" })
+                         <div class="input-group-append">
+                             <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                 <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+
+                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
+                 <div class="form-group">
+                     <div class="label">
+                         @Html.LabelFor(model => model.ConformPassword, "Conform Password: ")
+                     </div>
+                     <div class="input-group">
+                         @Html.PasswordFor(model => model.ConformPassword, new { @id = "conPasswordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password" })
+                         <div class="input-group-append">
+                             <button type="button" class="btn btn-outline-secondary" id="togglePasswordd">
+                                 <i id="togglePasswordIconn" class="fa fa-eye"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+
+
+                 @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 <label id="passwordmatch" onchange="PasswordMatch">  </label><br>
+
+                 <div class="button">
+                     @Html.ActionLink("Already Registered", "LoginPage", "Home",new { @class= "border-success" })
+                     <input type="submit" value="Register" class="border-success" id="btn" />
+                 </div>
+                 </div>
+                 }
+             </div>
+    
+      </div>
+   </div>
+
+        <style>
+
+            .welcomecontainer {
+                        height: 100%; /*vh;*/ /*95%;*/
+                        width: auto;
+                        display: flex;
+                        place-items:center;
+                        gap:10px;
+                        justify-content:space-between;
+                        background-color: black;
+                    }
+
+            .input-group .input-group-append {
+                display: flex;
+            
+            }
+
+            .image {
+               height: contain; /*     93.5vh;   */
+               min-width: 50%; /* Restrict the size */
+               flex-grow: 1;
+               justify-content: center; 
+               align-items: center; 
+               border-radius: 0% 50% 50% 00%; /* right curve*/
+               border: 5px solid darkblue;
+               background-color: rgb(87, 84, 82);
+               position: relative;
+                overflow: hidden;
+                /* padding: 2px; */
+            }
+
+                    img {
+                        width: 100%; /* Make image responsive */
+                        height: 100%;
+                        justify-content: center; /* Align the image to the right */
+                        align-items: center; /* Center the image vertically */
+                        border-radius: 0% 50% 50% 00%; /* right curve*/
+                        object-fit: fill;
+                        top: 2px;
+                        left: 2px;
+                        bottom: 2px;
+                        position: relative;
+                        border-radius: 0% 50% 50% 00%; /* right curve*/
+                        overflow: hidden;
+                        border: 5px solid black;
+                    }
+
+            .registration {
+                height: auto;
+                width: 100%;
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                place-items: center;
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+                    .heading {
+                        color: white;
+                        text-align: center;
+                    }
+
+            .button {
+                display: flex;
+                justify-content: center;
+            }
+            .button a{
+               display:grid;
+               place-items:center;
+
+               padding:10px;
+            }
+
+                .button #btn {
+                    display: flex;
+                    place-items: center;
+                    padding: 10px;
+                    width:fit-content;
+                }
+
+                .button .border-success {
+                    border: 2px solid Darkblue;
+                    background-color: black;
+                    color: white;
+                    border-radius: 20px;
+                }
+
+            .border-success:hover {
+                border: 2px solid Darkblue;
+                background-color: white;
+                color: darkblue;
+                border-radius: 20px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                        form{ width:100%;
+                              margin:0px;
+                        }
+            .form {
+                margin: 10px 30px 10px 30px; /* top right bottom left*/
+                display: flex;
+                justify-content: center;
+                border-radius: 25px;
+                background-color: black;
+                align-items: center;
+                border: 2px solid darkblue;
+                /* padding: 10px;*/
+                width: 90%;
+                margin: 25px; /*10px 30px 10px 30px;  top right bottom left*/
+            
+
+            }
+
+            .form-group {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                align-items: center;
+                margin: 5px;
+             
+               
+                flex-direction: row; /* Stacks label and input vertically */
+                align-items: flex-start;
+                gap: 5px; /* Adds space between label and input */
+            
+                /* margin: 5px;*/ /* background-color:bisque;*/
+            }
+
+
+                .form-group label {
+                    justify-content: center;
+                    align-items: flex-start;
+                    align-content: space-around;
+                    justify-items: center;
+                    padding: 10px;
+                    font-size: 14px;
+                    color: white;
+                    font: bold;
+                    transition: 0.15s all ease;
+                }
+            .label {
+                width: 60%;
+            }
+
+                .label a {
+                    font-weight: bold;
+                }
+
+
+            .form-container {
+                width: 95%;
+                margin: 10px;
+                background-color: darkgray;
+                padding: 5px;
+                border-radius: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+                    .form-group .input-group-append {
+                        /*display: flex;*/
+                        flex-direction: row; /* Stacks label and input vertically */
+                        align-items: baseline;
+                        gap: 5px; /*Adds space between label and input */
+                    }
+
+            .text-danger {
+                display: flex;
+                justify-content: center;
+            }
+
+
+
+                    .input-group {
+                        display:flex;
+                        justify-content: flex-start;
+                        margin: 0px;
+                        padding: 0px;
+                       /* background-color: chartreuse;*/
+                        align-items: baseline;
+                    }
+
+                    .alert {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        gap: 5px; /* Adds space between error messages */
+                        color: rgb(230, 46, 46);
+                        padding: 3px;
+                        margin: 0;
+                        font-size: 10px;
+                    }
+
+            input, #Passwordtxt, #conPasswordtxt  {
+                border: 2px solid darkblue;
+                border-color: darkblue;
+                border-radius: 25px;
+                margin-left: 5px;
+                margin-right: 10px;
+                width: 50%;
+                max-width: 200px;
+                height: 50px;
+                justify-content: start;
+            }
+
+                        input.ng-invalid.ng-touched {
+                            border-color: red;
+                        }
+
+
+                    small {
+                        color: red;
+                    }
+        </style>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("Passwordtxt");
+       const ConpasswordField= document.getElementById("conPasswordtxt");
+
+    const togglePasswordd = document.getElementById("togglePasswordd");
+        const toggleIcon = document.getElementById("togglePasswordIcon");
+    const toggleIconn = document.getElementById("togglePasswordIconn");
+
+
+        togglePassword.addEventListener("click", function () {
+            // Toggle password visibility
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+    });
+
+    togglePasswordd.addEventListener("click", function () {
+           if (ConpasswordField.type === "password") {
+                ConpasswordField.type = "text";
+                toggleIconn.classList.remove("fa-eye");
+                toggleIconn.classList.add("fa-eye-slash");
+            } else {
+                ConpasswordField.type = "password";
+                toggleIconn.classList.remove("fa-eye-slash");
+                toggleIconn.classList.add("fa-eye");
+            }
+        });
+    });
+        </script>
+
+</body>
+</html>

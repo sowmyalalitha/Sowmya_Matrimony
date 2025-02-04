@@ -1,0 +1,44 @@
+﻿body {
+    width: 100%; /* Make image responsive */
+    height: 100%;
+}
+/* change to column on smaller screens*/
+@media only screen and (max-width:740px) /*and (min-width:300px)*/
+{
+    .welcomecontainer {
+        flex-direction: column;
+        height: 100%;
+        background-color: black;
+    }
+
+    .image {
+        width: 100%;
+        height: 10%;
+    }
+
+    .registration {
+        width: 100%;
+        height: contain;
+        background-color: black;
+    }
+
+    .form {
+        background-color: black;
+    }
+
+    .form-container {
+        margin-left: 20px;
+        margin-right: 20px;
+        width:contain;
+    }
+
+    .form-group {
+        width: contain;
+        /*flex-direction:row;*/ /*column*/
+        display: flex;
+        margin: 0px;
+        /* justify-content:flex-start;*/
+    }
+
+        /*.form-group label {  flex: 1;  }*/
+}

@@ -1,0 +1,403 @@
+﻿@model asp.netwebmvcWebsite.Models.ForgotModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>forgot</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <link href="~/Content/forgotpassword.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="head"> @Html.Partial("head")</div>
+    <div class="welcomecontainer">
+
+       <div class="image"> <img src="../Images/marriageimage.jpg" ID="Image1" class="rounded float-start" />  </div>
+       <div class="login">
+
+            <div class="heading"><h2><b><i>Reset Password</i></b></h2> </div>
+            <div class="form">
+                @using (@Html.BeginForm("Forgot", "Home", FormMethod.Post))
+                 {
+
+                    <div class="form-container">
+                       <div class="form-group">                         
+                           <div class="label"> @Html.Label("Email : ")</div>
+                           <div class="input-group">
+                               @Html.EditorFor(model => model.RegisteredEmailId, new { @id = "Emailtxt", @type = "Email", @class = "form-control", @placeholder = "Enter your Email" }) @*, @Style = "border-radius:25px; border-color:darkblue;" })*@
+                               @*<div class="input-group-append" >
+                                       <button type="button" class="btn btn-outline-secondary" id="togglePassword" style="display:none;">
+                                        <i id="Icon" class="fa"></i>
+                                </button>
+                               </div>*@
+                           </div>
+                       </div>
+                         @Html.ValidationMessageFor(model => model.RegisteredEmailId, "", new { @class = "text-danger" })
+
+                       <div class="form-group">
+                          <div class="label">
+                            @Html.LabelFor(model => model.Password , "Password :" )
+                          </div>
+                          <div class="input-group">
+                             @Html.PasswordFor(model => model.Password, new { @id = "Passwordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password" })  @*@style = "border-color:darkblue;border-radius:25px;" })*@
+                             <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                                </button>
+                             </div>
+                          </div>
+                       </div>
+                     
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                           <div class="label">
+                              @Html.LabelFor(model => model.ConformPassword, "Conform Password :" )
+                           </div>
+                           <div class="input-group">
+                              @Html.PasswordFor(model => model.ConformPassword, new { @id = "conPasswordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password" })  @*@style = "border-color:darkblue;border-radius:25px;" })*@
+                              <div class="input-group-append">
+                                 <button type="button" class="btn btn-outline-secondary" id="togglePasswordd">
+                                    <i id="togglePasswordIconn" class="fa fa-eye"></i>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+
+
+                       @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+
+                       @Html.ViewData["Success"]
+                       <label id="error">@ViewBag.Notupdated</label>
+                       @Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "errorsview" })
+                     
+                        <div id="buttons">
+                          <input type="submit" value="Reset Password" class="border-success" />
+                          @Html.ActionLink("Go to login", "LoginPage", "Home", new { @class = "border-success" })
+                        </div>
+                    
+                    </div>
+
+                 }
+            </div>
+       </div>
+    </div>
+
+    
+    <style>
+
+        .registrationpage {
+            height: 100vh;
+            width: 100%;
+        }
+        #head{height:contain;
+              top:0;
+              bottom:0;
+        }
+
+        .welcomecontainer {
+            height: 90vh;
+            width: auto;
+            display: flex;
+            /*flex-direction: row;*/
+            background-color: black;
+        }
+
+            .welcomecontainer .image {
+                height: auto;
+                min-width: 50%;
+                align-items: center;
+                border-radius: 0% 50% 50% 00%;
+                border: 5px solid darkblue;
+                background-color: rgb(87, 84, 82);
+                position: relative;
+                overflow: hidden;
+            }
+
+        img {
+            width: 100%;
+            height: 100%;
+            justify-content: center; /* Align the image to the right */
+            align-items: center; /* Center the image vertically */
+            border-radius: 0% 50% 50% 00%; /* right curve*/
+            object-fit: fill;
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            position: relative;
+            border-radius: 0% 50% 50% 00%; /* right curve*/
+            overflow: hidden;
+            border: 5px solid black;
+            flex-grow:1;
+        }
+
+        .login {
+            height: auto;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .heading {
+            color: darkblue;
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            justify-content: center;
+            border-radius: 25px;
+            background-color: black;
+            align-items: center;
+            border: 2px solid darkblue;
+            /* padding: 10px;*/
+            width: 90%;
+            margin: 25px; /*10px 30px 10px 30px;  top right bottom left*/
+        }
+        form{
+            width:100%;
+        }
+
+
+        .label{width:60%;}
+
+
+        /* Form container styles */
+        .form-container {
+            width:95%;
+            margin:10px;
+            background-color:darkgray;
+            padding: 5px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* width: 450px; 400px;  Set a fixed width */
+        }
+
+        /* Align label and input properly */
+        .input-group .form-group {  
+            margin-bottom: 15px;
+            display:inline-block;
+           
+            justify-content: space-between;
+        }
+
+            .form-group label {
+                /* display: block;  Ensures label is above the input */
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: white;
+                margin-top:10px;
+
+            }
+
+            .label .input-group{display:flex;}
+
+            .input-group{
+                gap:10px;
+            }
+
+              
+        /* Input styling */
+      /*  .form-control {
+            
+            width: 5px;
+            padding: 8px;
+            border: 10px solid darkblue;
+            border-radius: 20px;
+            float:left;
+        }*/
+
+        /* Button styling */
+        .input-group-append button {
+            border-radius: 5px;
+            border: 1px solid darkblue;
+        }
+
+        /* Center validation messages */
+        .text-danger {
+            display: block;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+
+        .form-group {
+            display: flex;
+           /* justify-content:flex-start;*/
+          
+        }
+
+   
+        #buttons{
+            display:flex;
+            justify-content:center;
+          gap:20px;
+        }
+
+        #buttons .border-success{
+            border:2px solid Darkblue;
+            background-color:black;
+            color:white;
+            border-radius:20px;
+        }
+
+            #buttons .border-success:hover {
+                border: 2px solid Darkblue;
+                background-color: white;
+                color: darkblue;
+                border-radius: 20px;
+                text-decoration:none;
+                font-weight:bold;
+            }
+
+
+
+        #Passwordtxt, #conPasswordtxt, .input-group #Emailtxt {
+            border: 2px solid darkblue;
+            border-color: darkblue;
+            right: 0;
+            /*  margin-left:20px;*/
+            /*padding-left: 10px;*/
+            border-radius: 25%;
+            width: 100%;
+            max-width: 200px;
+            /*  height: auto*/
+            font-size: 14px;
+            float: right;
+        }
+
+        #error {
+           color:red;
+           display:grid;
+           place-items:center;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .alert {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px; /* Adds space between error messages */
+            color: rgb(230, 46, 46);
+            padding: 3px;
+            margin: 0;
+            font-size: 10px;
+        }
+
+     
+
+
+        .border-success {
+            /* display:inline-flex;
+            flex-direction:column;*/
+            gap: 10px;
+            justify-content: space-evenly;
+            width: fit-content;
+            align-items: center;
+            background-color: darkblue;
+            color: white;
+        }
+
+        input .ng-invalid.ng-touched {
+            border-color: red;
+        }
+
+
+        small {
+            color: red;
+        }
+    </style>
+
+
+    <script>
+     document.addEventListener("DOMContentLoaded", function ()
+     {
+        const togglePasswordd = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("Passwordtxt");
+         const toggleIcon = document.getElementById("togglePasswordIcon");
+
+        togglePasswordd.addEventListener("click", function () {
+            // Toggle password visibility
+            if (passwordField.type === "password")
+           {
+                passwordField.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            }
+           else {
+                passwordField.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+     });
+
+
+
+        const togglePassword2 = document.getElementById("togglePasswordd");
+        const passwordField2 = document.getElementById("conPasswordtxt");
+         const toggleIcon2 = document.getElementById("togglePasswordIconn");
+
+         togglePassword2.addEventListener("click", function () {
+            // Toggle password visibility
+            if (passwordField2.type === "password")
+           {
+                passwordField2.type = "text";
+                toggleIcon2.classList.remove("fa-eye");
+                toggleIcon2.classList.add("fa-eye-slash");
+            }
+           else {
+                passwordField2.type = "password";
+                toggleIcon2.classList.remove("fa-eye-slash");
+                toggleIcon2.classList.add("fa-eye");
+            }
+      });
+
+    });
+
+
+    </script>
+
+</body>
+
+
+</html>

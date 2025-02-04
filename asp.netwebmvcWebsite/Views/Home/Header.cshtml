@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "Header";
+}
+@using Microsoft.AspNetCore.Http
+@*@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor*@
+
+@*<partial>
+
+        <nav>
+            <div class="header-content">
+                <div class="headingheader">
+                    <label class="logo"> <h2>Sowmya Matrimony</h2></label>
+                </div>
+                <ul>
+                  <li class="emailbutton">
+                    @if (Session["email"] != null)
+                    {<span>  Email: @Session["email"] </span> }
+                    else { <span></span>}
+                   </li>
+                    <li> @Html.ActionLink("Logout", "logoutbtn", "Home", new { @class = "btn-danger", @id = "btn" }) </li>
+                </ul>
+            </div>
+        </nav>
+        <style>
+
+           /* *{
+                margin:0;padding:0;text-decoration:none;list-style:none;
+                box-sizing:border-box;
+            }*/
+
+            nav{
+                background:darkblue;
+                height:60px; width:100%;
+            }
+
+            label .logo{
+                color:white;
+                font-size:35px;
+                line-height:60px;
+                padding:0 100px;
+                font-weight:bold;
+            }
+
+            nav ul {
+            float:right;
+            margin-right:20px;
+            }
+
+            nav ul li{
+                display:inline-block;
+                line-height:60px;
+                margin:0 5px;
+            }
+
+            .heading .emailbutton {
+                /* display: flex;*/
+                /*align-items:flex-end;*/
+                gap: 100px;
+                align-content: space-between;
+            }
+
+            .header-content {
+                flex-grow: 1;
+                flex-wrap: wrap;
+                padding-bottom: 3px;
+                height: auto;
+                min-height: fit-content;
+            }
+
+            .headingheader {
+                flex-grow: 1;
+                flex-basis: 200;
+                /*width: 900px;*/
+                text-align: left;
+            }
+
+            #btn {
+                align-content: flex-end;
+                padding: 5px;
+            }
+
+            .btn-danger:hover {
+                color: white;
+                background-color: red;
+                border-color: white;
+                align-content: flex-end;
+                margin: 5px;
+            }
+
+            .btn-danger {
+                border: 2px solid white;
+                background-color: blue;
+                align-content: flex-end;
+                margin: 20px;
+                height: 30px;
+                width: fit-content;
+            }
+
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 5vh;
+            }
+
+                .header-content h2 {
+                    margin: 0;
+                }
+
+                .header-content span {
+                    margin-right: 10px;
+                }
+
+            nav {
+                background-color: darkblue;
+                display: flex;
+                justify-items: flex-start;
+                width: 100%;
+            }
+
+            h2, span {
+                color: white;
+            }
+        </style>
+
+    </partial>*@
+
+
+
+
+
+<partial>
+
+    <nav>
+        <div class="header-content">
+            <div class="headingheader">
+                <label class="logo"> <h2>Sowmya Matrimony</h2></label>
+            </div>
+            <ul>
+                <li class="emailbutton">
+                    @if (Session["email"] != null)
+                    {<span>  Email: @Session["email"] </span> }
+                else
+                { <span></span>}
+                </li>
+                <li> @Html.ActionLink("Logout", "logoutbtn", "Home", new { @class = "btn-danger", @id = "btn" }) </li>
+            </ul>
+        </div>
+    </nav>
+    <style>
+
+        /* *{
+            margin:0;padding:0;text-decoration:none;list-style:none;
+            box-sizing:border-box;
+        }*/
+
+        nav {
+            background: darkblue;
+            height: 60px;
+            width: 100%;
+        }
+
+        label .logo {
+            color: white;
+            font-size: 35px;
+            line-height: 60px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 20px;
+        }
+
+            nav ul li {
+                display: inline-block;
+                line-height: 60px;
+                margin: 0 5px;
+            }
+
+        .heading .emailbutton {
+            /* display: flex;*/
+            /*align-items:flex-end;*/
+            gap: 100px;
+            align-content: space-between;
+        }
+
+        .header-content {
+            flex-grow: 1;
+            flex-wrap: wrap;
+            padding-bottom: 3px;
+            height: auto;
+            min-height: fit-content;
+        }
+
+        .headingheader {
+            flex-grow: 1;
+            flex-basis: 200;
+            /*width: 900px;*/
+            text-align: left;
+        }
+
+        #btn {
+            align-content: flex-end;
+            padding: 5px;
+        }
+
+        .btn-danger:hover {
+            color: white;
+            background-color: red;
+            border-color: white;
+            align-content: flex-end;
+            margin: 5px;
+        }
+
+        .btn-danger {
+            border: 2px solid white;
+            background-color: blue;
+            align-content: flex-end;
+            margin: 20px;
+            height: 30px;
+            width: fit-content;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5vh;
+        }
+
+            .header-content h2 {
+                margin: 0;
+            }
+
+            .header-content span {
+                margin-right: 10px;
+            }
+
+        nav {
+            background-color: darkblue;
+            display: flex;
+            justify-items: flex-start;
+            width: 100%;
+        }
+
+        h2, span {
+            color: white;
+        }
+    </style>
+
+</partial>

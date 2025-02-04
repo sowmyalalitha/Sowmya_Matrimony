@@ -1,0 +1,365 @@
+﻿
+@*@model  IEnumerable<asp.netwebmvcWebsite.Models.DetailedView>*@
+
+@model  asp.netwebmvcWebsite.Models.DetailedView
+
+
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detailed View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="welcomecontainer">
+        @*<div id="head"> </div>*@
+        @Html.Partial("head")
+
+        <div class="heading">
+            @if (Model.Gender == "Female")
+            {
+                <p>  @Html.ActionLink("Back", "BridePage") </p>
+            }
+            else if (Model.Gender == "Male")
+            {
+                <p>  @Html.ActionLink("Back", "BroomPage") </p>
+            }
+            <h2>Detailed View Page</h2>
+        </div>
+        <div class="photoName">
+            <div class="containerr" style="overflow:hidden; width:20px;">
+                <div class="w3-content w3-display-container">
+                    <img class="mySlides" src="@Url.Content(Model.MainImage1FilePath)" style="width:100%">
+                    <img class="mySlides" src="@Url.Content(Model.Image2FilePath)" style="width:100%">
+                    <img class="mySlides" src="@Url.Content(Model.Image3FilePath)" style="width:100%">
+
+                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="Details1">
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Name) </dt>
+                        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.Surname)</dt>
+                        <dd> @Html.DisplayFor(model => model.Surname)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.Age) </dt>
+                        <dd> @Html.DisplayFor(model => model.Age) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.Gender) </dt>
+                        <dd> @Html.DisplayFor(model => model.Gender) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.DOB)</dt>
+                        <dd> @Html.DisplayFor(model => model.DOB)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.TOB)</dt>
+                        <dd> @Html.DisplayFor(model => model.TOB) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.PlaceOfBirth)</dt>
+                        <dd> @Html.DisplayFor(model => model.PlaceOfBirth)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.CandiatePlace)</dt>
+                        <dd> @Html.DisplayFor(model => model.CandiatePlace)</dd>
+
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.Raasi)</dt>
+                        <dd> @Html.DisplayFor(model => model.Raasi)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.Star)</dt>
+                        <dd> @Html.DisplayFor(model => model.Star)</dd>
+
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Occupation)</dt>
+                        <dd> @Html.DisplayFor(model => model.Occupation)</dd>
+                    </dl>
+                </div>
+                <div class="Details2">
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.CandiateContact)</dt>
+                        <dd> @Html.DisplayFor(model => model.CandiateContact)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.MotherName) </dt>
+                        <dd> @Html.DisplayFor(model => model.MotherName) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.MotherOccupation)</dt>
+                        <dd> @Html.DisplayFor(model => model.MotherOccupation) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.MotherPlace)</dt>
+                        <dd> @Html.DisplayFor(model => model.MotherPlace) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt> @Html.DisplayNameFor(model => model.MotherContact)</dt>
+                        <dd> @Html.DisplayFor(model => model.MotherContact) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.FatherName) </dt>
+                        <dd> @Html.DisplayFor(model => model.FatherName) </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FatherOccupation)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FatherOccupation)
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FatherContact)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FatherContact)
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FatherPlace)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FatherPlace)
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CandiateEmailID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CandiateEmailID)
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Saakha)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Saakha)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+    </script>
+
+
+    <style>
+        .welcomecontainer {
+            min-height: 100%; /* Ensures the height is at least 95% of the viewport */
+            height: auto;
+            width: auto;
+            background-color: black;
+            margin: 0px;
+            padding-bottom:10px;
+        }
+
+        .dl-horizontal {
+            Display: flex;
+            gap: 10px;
+            margin-bottom:11px;
+        }
+
+         .dl-horizontal  dt 
+         {
+                flex: 1;
+                 font-weight: bold;
+               color: white;
+         }
+
+         .dl-horizontal dd {
+                flex: 2;
+                font-weight:normal;
+                color: white;
+            }
+
+          dt,dd{
+                display:inline-flex;
+            }
+
+        .mySlides {
+            display: none;
+            overflow:hidden;
+            height:400px;
+            width:40%;
+        }
+
+        .photoName {
+             margin:  5px 20px 15px 20px; /* top right bottom left*/
+            padding: 10px 20px 10px 20px; /* top right bottom left*/
+            border: 2px solid white;
+            border-radius: 5%;
+            background-color: black;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            width:95%;
+        }
+
+        .containerr {
+            flex-grow: 1;
+            flex-basis: 200;
+            border-color: white;
+            border: 2px solid;
+            border-radius: 10%;
+            width: 40%;
+            Margin-top: 5px;
+            margin-right: 5px;
+           
+        }
+     
+
+        .details {
+            display: flex;
+            width: 60%;
+            flex-grow: 1;
+            flex-wrap: wrap;
+            flex-basis: 200;
+            border-color: white;
+            border: 2px solid;
+            border-radius: 5%;
+            Margin-top: 5px;
+            padding: 20px 20px 10px 20px; /* top right bottom left*/
+            gap: 10px;
+        }
+
+
+        .Details1{
+            flex-grow:1;
+            flex-basis:200;
+            width:50%;
+        }
+
+
+        .Details2 {
+            flex-grow: 1;
+            flex-basis: 200;
+            width: 50%;
+        }
+        .Details1 dt{
+            width:30px;
+        }
+
+        .heading{
+            display: flex;
+            flex-wrap:wrap;
+            width:100%;
+        }
+
+        .heading p{
+            width:20%;
+            text-decoration:none;
+            text-decoration-color:white;
+           color:white;
+           padding-left:5px; padding-top:5px;
+        }
+
+            .heading p :hover {
+                width: 20%;
+                color: red;
+                text-decoration: none;
+                border-radius: 5%;
+            }
+
+        .heading h2 {
+            color: white;
+            text-shadow: 2px,2px,4px,rgba(0, 0, 0, 0.5);
+            text-align: center;
+            justify-content: center;
+        width:80%;
+            }
+
+
+        #image {
+            width: 150px;
+            height: 150px;
+            border-radius: 25%;
+            border: 3px solid white;
+        }
+
+        #name {
+            color: white;
+            text-align: center;
+        }
+
+        .imagename {
+            background-color: darkblue;
+            padding: 20px 20px 5px 20px; /* top right bottom left*/
+            margin: 10px;
+            border: 3px solid white;
+            border-radius: 25%;
+            width: 200px;
+        }
+
+        .btn {
+            text-decoration: none; /* Remove underline */
+            /* padding: 10px ;  /* top right bottom left*/
+            border-radius: 5px;
+            text-align: center;
+            justify-content: flex-start;
+            margin: 0px 5px 0 0;
+        }
+
+        .btn-danger {
+            color: white;
+            background-color: red;
+            border: 2px solid red;
+            text-align: center;
+            padding-bottom: 2px;
+            text-align: center;
+        }
+        /* transition: background-color; 0.3s ease;  Smooth hover effect
+            /*}
+
+            .btn-danger:hover { background-color: darkred; }*/
+    </style>
+</body>
+</html>
+
+
+
+

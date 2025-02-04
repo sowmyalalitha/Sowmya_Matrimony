@@ -1,0 +1,309 @@
+[HttpPost]
+        public ActionResult AddDetailsPage(sowmyaMatrimony  model, HttpPostedFileBase MainImage1FilePath, HttpPostedFileBase Image2FilePath, HttpPostedFileBase Image3FilePath )     //, Image MainImage1, IFormFile Image2, IFormFile Image3)
+        {
+           
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (MainImage1FilePath == null || MainImage1FilePath.ContentLength == 0)
+                    { ModelState.AddModelError("", "File 1 not uploaded ,upload image file"); }
+                    else if (MainImage1FilePath != null && MainImage1FilePath.ContentLength > 0)
+                    {
+                        string filename1 = Path.GetFileName(MainImage1FilePath.FileName);
+                        var baseFolder = Server.MapPath("~/Images");
+                        var folderName = model.Name;
+                        var subFolder = Path.Combine(baseFolder, folderName);
+                        string fileName1 = Path.GetFileName(MainImage1FilePath.FileName);
+                        string filepath = Path.GetExtension(MainImage1FilePath.FileName);
+
+                        // Create the directory if it doesn't exist
+                        if (!Directory.Exists(subFolder)) { Directory.CreateDirectory(subFolder); }
+
+                        if (filepath != ".jpg" && filepath != ".png" && filepath != ".jpeg")
+                        { ViewBag.Message = "only .jpeg , .jpg ,.png files are allowed"; }
+                        else
+                        {
+                            string fullfilepath = Path.Combine(subFolder, fileName1);
+                            fullfilepath = GenerateUniqueFilePath(fullfilepath);
+                            MainImage1FilePath.SaveAs(fullfilepath);
+                            ViewBag.Message1 = "file 1 image  successfully saved to folder ";
+
+                            string relativePath = $"~/Images/{folderName}/{fileName1}";
+                            model.MainImage1FilePath = relativePath;
+                            ViewBag.filepath1 = model.MainImage1FilePath;
+
+                            model.MainImage1 = System.IO.File.ReadAllBytes(fullfilepath);
+
+                            // Convert byte array to Base64 string
+                            string base64Image = Convert.ToBase64String(model.MainImage1);
+                            ViewBag.Image1 = $"data:image/jpeg;base64,{base64Image}";
+
+                            //ViewBag.Image1 = model.MainImage1;
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(Request.Form["ExistingMainImage1"]))
+                    { model.MainImage1 = Convert.FromBase64String(Request.Form["ExistingMainImage1"]); }
+
+                    if (Image2FilePath == null || Image2FilePath.ContentLength == 0)
+                    { ModelState.AddModelError("", "File 2 not uploaded ,upload image file"); }
+                    else if (Image2FilePath != null && Image2FilePath.ContentLength > 0)
+                    {
+                        string filename2 = Path.GetFileName(Image2FilePath.FileName);
+                        var baseFolder = Server.MapPath("~/Images");
+                        var folderName = model.Name;
+                        var subFolder = Path.Combine(baseFolder, folderName);
+                        string fileName2 = Path.GetFileName(Image2FilePath.FileName);
+                        string filepath = Path.GetExtension(Image2FilePath.FileName);
+
+                        if (!Directory.Exists(subFolder)) { Directory.CreateDirectory(subFolder); }
+
+                        if (filepath != ".jpg" && filepath != ".png" && filepath != ".jpeg")
+                        { ViewBag.Message = "only .jpeg , .jpg ,.png files are allowed"; }
+                        else
+                        {
+                            string fullfilepath2 = Path.Combine(subFolder, fileName2);
+                            fullfilepath2 = GenerateUniqueFilePath(fullfilepath2);
+                            Image2FilePath.SaveAs(fullfilepath2);
+                            ViewBag.Message2 = "file 2 image  successfully saved to folder";
+
+                            string relativePath = $"~/Images/{folderName}/{fileName2}";
+                            model.Image2FilePath = relativePath;
+                            ViewBag.filepath2 = model.Image2FilePath;
+                            var pp2 = System.IO.File.ReadAllBytes(fullfilepath2);
+
+                            using (var binaryReader = new BinaryReader(Image2FilePath.InputStream))
+                            { model.Image2 = binaryReader.ReadBytes(Image2FilePath.ContentLength); }
+
+
+                            TempData["Image2"] = pp2;
+
+                            // Convert byte array to Base64 string
+                            string base64Image = Convert.ToBase64String(pp2);
+                            ViewBag.Image2 = $"data:image/jpeg;base64,{base64Image}";
+                            //model.Image2 = ViewBag.Image2;
+
+
+                            string fullPath = Server.MapPath(relativePath); // Resolve the relative path to an absolute path
+
+                           
+
+
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(Request.Form["ExistingMainImage2"]))
+                    { model.Image2 = Convert.FromBase64String(Request.Form["ExistingMainImage2"]); }
+
+                    if (Image3FilePath == null || Image3FilePath.ContentLength == 0)
+                    { ModelState.AddModelError("", "File 3 not uploaded ,upload image file"); }
+                    else if (Image3FilePath != null && Image3FilePath.ContentLength > 0)
+                    {
+                        string filename3 = Path.GetFileName(Image3FilePath.FileName);
+
+                        var baseFolder = Server.MapPath("~/Images");
+                        var folderName = model.Name;
+                        var subFolder = Path.Combine(baseFolder, folderName);
+                        string fileName3 = Path.GetFileName(Image3FilePath.FileName);
+                        string filepath = Path.GetExtension(Image3FilePath.FileName);
+
+                        if (!Directory.Exists(subFolder)) { Directory.CreateDirectory(subFolder); }
+
+                        if (filepath != ".jpg" && filepath != ".png" && filepath != ".jpeg")
+                        { ViewBag.Message = "only .jpeg , .jpg ,.png files are allowed"; }
+                        else
+                        {
+                            string fullfilepath3 = Path.Combine(subFolder, fileName3);
+                            fullfilepath3 = GenerateUniqueFilePath(fullfilepath3);
+                            Image3FilePath.SaveAs(fullfilepath3);
+                            ViewBag.Message3 = "file 3 image  successfully saved to folder";
+
+                            string relativePath = $"~/Images/{folderName}/{fileName3}";
+                            model.Image3FilePath = relativePath;
+                            ViewBag.filepath3 = model.Image3FilePath;
+
+                            model.Image3 = System.IO.File.ReadAllBytes(fullfilepath3);
+
+                            // Convert byte array to Base64 string
+                            string base64Image = Convert.ToBase64String(model.Image3);
+                            ViewBag.Image3 = $"data:image/jpeg;base64,{base64Image}";
+
+                            //ViewBag.Image1 = model.MainImage1;
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(Request.Form["ExistingMainImage3"]))
+                    { model.Image3 = Convert.FromBase64String(Request.Form["ExistingMainImage3"]); }
+
+                    string connectionString = ConfigurationManager.ConnectionStrings["Sowmyadb"].ConnectionString;
+                    string regmail = (string)Session["Email"];
+
+                    //Check if the email already exists
+                    string checkQuery = "SELECT count(*) FROM SowmyaMatrimony WHERE RegisteredEmailId = '" + regmail + "' and Name= '" + model.Name + "'  ";
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
+                        {
+                            conn.Open();
+                            int countt = (int)checkCmd.ExecuteScalar();
+                            if (countt > 0)
+                            {
+                                ModelState.AddModelError("", "A profile with the same email and name already exists.");
+                                return View(model);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        string checkQuery2 = "SELECT count(*) FROM SowmyaMatrimony WHERE RegisteredEmailId = '" + regmail + "' ";
+                        using (SqlCommand checkCmd = new SqlCommand(checkQuery2, conn))
+                        {
+                            conn.Open();
+                            int countt = (int)checkCmd.ExecuteScalar();
+                            if (countt > 5)
+                            {
+                                ModelState.AddModelError("", "Cant Insert Profile With this Email id ,It is used for 5 times ");
+                                return View(model);
+                            }
+                        }
+                        conn.Close();
+                    }
+                    //string checkQueryy = @"SELECT COUNT(*) FROM SowmyaMatrimony WHERE RegisteredEmailId = @RegisteredEmailId and Password IS NOT NULL AND Password != 'Pending' ";
+                    //using (SqlCommand checkCmdd = new SqlCommand(checkQueryy, conn))
+                    //{
+                    //    conn.Open();
+                    //    checkCmdd.Parameters.AddWithValue("@RegisteredEmailId", regmail);
+
+                    //    int count = (int)checkCmdd.ExecuteScalar(); // Get the count of matching rows
+                    //                                                // conn.Close();                   
+                    //    string insertQuery;
+                    //    if (count > 0)     //count > 0)// Query when RegisteredEmailId exists and Name is 'Pending'
+                    //    {
+
+
+
+
+                    //string updateQuery = @" UPDATE SowmyaMatrimony SET  [Name] = @Name,  [Surname] = @Surname, [Age] = @Age, [Gender] = @Gender, 
+                    //          [DOB] = @DOB, [TOB] = @TOB, [PlaceOfBirth] = @PlaceOfBirth, [CandiatePlace] = @CandiatePlace,  [Raasi] = @Raasi, [Star] = @Star, 
+                    //           [Occupation] = @Occupation, 
+                    //          [CandiateContact] = @CandiateContact, [MotherName] = @MotherName, [MotherOccupation] = @MotherOccupation, [MotherPlace] = @MotherPlace, 
+                    //         [MotherContact] = @MotherContact, [FatherName] = @FatherName, [FatherOccupation] = @FatherOccupation, [FatherContact] = @FatherContact, 
+                    //          [FatherPlace] = @FatherPlace, [MainImage1] = @MainImage1, [Image2] = @Image2, [Image3] = @Image3, [ProfileAddDateTime] = @ProfileAddDateTime, 
+                    //          [CandiateEmailID] = @CandiateEmailID, [Saakha] = @Saakha ,[MainImage1FilePath]=@MainImage1FilePath , [Image2FilePath]=@Image2FilePath ,
+                    //          [Image3FilePath]=@Image3FilePath  WHERE  [RegisteredEmailId] = @RegisteredEmailId  and Password!='Pending' and Password=ConformPassword ";
+
+                    //using (SqlConnection conn = new SqlConnection(connectionString))
+                    //{
+                    //    using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
+                    //    {
+                    //        cmd.Parameters.AddWithValue("@RegisteredEmailId", regmail);
+                    //        cmd.Parameters.AddWithValue("@Name", model.Name);
+                    //        cmd.Parameters.AddWithValue("@Surname", model.Surname);
+                    //        cmd.Parameters.AddWithValue("@Age", model.Age);
+                    //        cmd.Parameters.AddWithValue("@Gender", model.Gender);
+                    //        cmd.Parameters.AddWithValue("@DOB", model.DOB);
+                    //        cmd.Parameters.AddWithValue("@TOB", model.TOB);
+                    //        cmd.Parameters.AddWithValue("@PlaceOfBirth", model.PlaceOfBirth);
+                    //        cmd.Parameters.AddWithValue("@CandiatePlace", model.CandiatePlace);
+                    //        cmd.Parameters.AddWithValue("@Raasi", model.Raasi);
+                    //        cmd.Parameters.AddWithValue("@Star", model.Star);
+                    //        cmd.Parameters.AddWithValue("@Occupation", model.Occupation);
+                    //        cmd.Parameters.AddWithValue("@CandiateContact", model.CandiateContact);
+                    //        cmd.Parameters.AddWithValue("@MotherName", model.MotherName);
+                    //        cmd.Parameters.AddWithValue("@MotherOccupation", model.MotherOccupation);
+                    //        cmd.Parameters.AddWithValue("@MotherPlace", model.MotherPlace);
+                    //        cmd.Parameters.AddWithValue("@MotherContact", model.MotherContact);
+                    //        cmd.Parameters.AddWithValue("@FatherName", model.FatherName);
+                    //        cmd.Parameters.AddWithValue("@FatherOccupation", model.FatherOccupation);
+                    //        cmd.Parameters.AddWithValue("@FatherContact", model.FatherContact);
+                    //        cmd.Parameters.AddWithValue("@FatherPlace", model.FatherPlace);
+                    //        cmd.Parameters.AddWithValue("@MainImage1", @ViewBag.Image1);
+                    //        cmd.Parameters.AddWithValue("@Image2", @ViewBag.Image2);
+                    //        cmd.Parameters.AddWithValue("@Image3", @ViewBag.Image3);
+                    //        cmd.Parameters.AddWithValue("@CandiateEmailID", model.CandiateEmailID);
+                    //        cmd.Parameters.AddWithValue("@Saakha", model.Saakha);
+                    //        cmd.Parameters.AddWithValue("@ProfileAddDateTime", DateTime.Now);
+                    //        cmd.Parameters.AddWithValue("@MainImage1FilePath", model.MainImage1FilePath);
+                    //        cmd.Parameters.AddWithValue("@Image2FilePath", model.Image2FilePath);
+                    //        cmd.Parameters.AddWithValue("@Image3FilePath", model.Image3FilePath);
+
+
+                    //        conn.Open();
+                    //        cmd.ExecuteNonQuery();
+                    //        conn.Close();
+                    //    }
+                    //}
+
+
+
+                   
+
+                    //else
+                    //{  // Query when RegisteredEmailId does not exist
+                    string insertQuery = @"INSERT INTO SowmyaMatrimony  ([RegisteredEmailId], [Name], [Surname], [Age], [Gender], [DOB], [TOB], [PlaceOfBirth], 
+                       [CandiatePlace],[Raasi], [Star], [Occupation], [CandiateContact], [MotherName], [MotherOccupation], [MotherPlace], [MotherContact], 
+                        [FatherName], [FatherOccupation], [FatherContact], [FatherPlace], [MainImage1], [Image2], [Image3], [ProfileAddDateTime], [CandiateEmailID], 
+                         [Saakha] ,[MainImage1FilePath] ,[Image2FilePath],  [Image3FilePath])   VALUES 
+                      (@RegEmail, @Name, @Surname, @Age, @Gender, @DOB, @TOB, @PlaceOfBirth, @CandiatePlace, @Raasi, @Star, @Occupation, @CandiateContact, 
+                      @MotherName, @MotherOccupation, @MotherPlace, @MotherContact, @FatherName, @FatherOccupation, @FatherContact, @FatherPlace, @MainImage1, 
+                      @Image2, @Image3, @ProfileAddDateTime, @CandiateEmailID, @Saakha ,@MainImage1FilePath,@Image2FilePath ,@Image3FilePath) ";
+
+                    //SqlCommand cmd = new SqlCommand(updateQuery, conn);
+                    using(SqlConnection conn= new SqlConnection(connectionString))
+                    { 
+                        using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@RegEmail", regmail);
+                        cmd.Parameters.AddWithValue("@Name", model.Name);
+                        cmd.Parameters.AddWithValue("@Surname", model.Surname);
+                        cmd.Parameters.AddWithValue("@Age", model.Age);
+                        cmd.Parameters.AddWithValue("@Gender", model.Gender);
+                        cmd.Parameters.AddWithValue("@DOB", model.DOB);
+                        cmd.Parameters.AddWithValue("@TOB", model.TOB);
+                        cmd.Parameters.AddWithValue("@PlaceOfBirth", model.PlaceOfBirth);
+                        cmd.Parameters.AddWithValue("@CandiatePlace", model.CandiatePlace);
+                        cmd.Parameters.AddWithValue("@Raasi", model.Raasi);
+                        cmd.Parameters.AddWithValue("@Star", model.Star);
+                        cmd.Parameters.AddWithValue("@Occupation", model.Occupation);
+                        cmd.Parameters.AddWithValue("@CandiateContact", model.CandiateContact);
+                        cmd.Parameters.AddWithValue("@MotherName", model.MotherName);
+                        cmd.Parameters.AddWithValue("@MotherOccupation", model.MotherOccupation);
+                        cmd.Parameters.AddWithValue("@MotherPlace", model.MotherPlace);
+                        cmd.Parameters.AddWithValue("@MotherContact", model.MotherContact);
+                        cmd.Parameters.AddWithValue("@FatherName", model.FatherName);
+                        cmd.Parameters.AddWithValue("@FatherOccupation", model.FatherOccupation);
+                        cmd.Parameters.AddWithValue("@FatherContact", model.FatherContact);
+                        cmd.Parameters.AddWithValue("@FatherPlace", model.FatherPlace);
+                        cmd.Parameters.AddWithValue("@MainImage1", @ViewBag.Image1);
+                        cmd.Parameters.AddWithValue("@Image2", @ViewBag.Image2);
+                        cmd.Parameters.AddWithValue("@Image3", @ViewBag.Image3);
+                        cmd.Parameters.AddWithValue("@CandiateEmailID", model.CandiateEmailID);
+                        cmd.Parameters.AddWithValue("@Saakha", model.Saakha);
+                        cmd.Parameters.AddWithValue("@ProfileAddDateTime", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@MainImage1FilePath", model.MainImage1FilePath);
+                        cmd.Parameters.AddWithValue("@Image2FilePath", model.Image2FilePath);
+                        cmd.Parameters.AddWithValue("@Image3FilePath", model.Image3FilePath);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+
+
+                    ViewBag.Failure = "Profile Saved Successfully";
+                    TempData["Success"] = "Profile Saved Successfully";
+                    return View();    //RedirectToAction("BridePage");
+                }
+                
+                catch (Exception ex)
+                {
+                    ViewBag.Failure = "Profile Not Saved";
+                    var error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                    ModelState.AddModelError("", "An error occurred while saving the data." + ex + "   and " + error);
+                    return View();
+                }
+            }
+             return View(model); //return the same view for errors
+        }

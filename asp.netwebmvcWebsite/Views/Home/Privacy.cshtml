@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Privacy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="privacypage">
+    <h2>Privacy</h2>
+
+    <ul>
+        <li>
+            <h2>Sowmya Matrimony</h2>
+        </li>
+
+        
+        <ul style="float:right">
+            <li >
+                @if (Session["email"] != null)
+                {<span>  Email: @Session["email"] </span> }
+            else
+            { <span> word </span>}@*style="display:none"*@
+        </li>
+        <li>
+            @Html.ActionLink("Logout", "Index", "Home", new { @class = "btn-danger", @id = "btn" })
+        </li>
+        </ul>
+        
+    </ul>
+
+
+    @*<nav>
+        <div class="header-content">
+            <div class="headingheader">
+                <h2>Sowmya Matrimony</h2>
+            </div>
+            <div class="emailbutton">
+                @if (Session["email"] != null) {<span>  Email: @Session["email"] </span> }
+                 else { <span></span>}
+                @Html.ActionLink("Logout", "Index", "Home", new { @class = "btn-danger", @id = "btn" })
+            </div>
+        </div>
+    </nav>*@
+
+</div>
+
+
+<style>
+    * {
+        background-color: aqua;
+        margin-left:0px;
+       
+    }
+
+    .privacypage {
+        background-color: coral;
+        margin: 0px;
+        padding: 2px;
+        border: 2px black;
+    }
+    @*footer{margin:0px;}*@
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #111;
+            }
+
+    .active {
+        background-color: #04AA6D;
+    }
+</style>

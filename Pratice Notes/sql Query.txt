@@ -1,0 +1,240 @@
+table creation
+
+
+CREATE TABLE sowmyaMatrimony_temp (
+    
+SNO INT IDENTITY(1,1) PRIMARY KEY,
+   
+ RegisteredEmailId VARCHAR(50) NOT NULL,
+   
+ Password VARCHAR(50) NOT NULL,
+   
+ ConformPassword VARCHAR(50) NOT NULL,
+  
+  RegisteredDateTime DATETIME NOT NULL,
+
+	Name varchar(30) not null, 
+    Surname  varchar(30) not null,
+    Age int not null,
+	Gender varchar(20) not null,
+    DOB Date Not null,
+	TOB Time Not null,
+    PlaceOfBirth varchar(30) not null,
+    CandiatePlace varchar(30) not null,
+    Raasi varchar(30) not null,
+    Star varchar(30) not null,
+    Occupation varchar(30) not null,
+    CandiateContact varchar(30) not null,
+    MotherName varchar(30) not null,
+    MotherOccupation varchar(30) not null,
+    MotherPlace varchar(10) not null,
+    MotherContact varchar(30) not null,
+    FatherName varchar(30) not null,
+    FatherOccupation varchar(30) not null
+      ,[FatherContact] varchar(30) not null
+      ,[FatherPlace] varchar(30) not null
+      ,[ViewAmount] int not null
+      ,[ViewAmountStatus] varchar(30) not null
+      ,[ProfileAmount] int not null
+      ,[ProfileAmountStatus] varchar(30) not null
+      ,[MainImage1] image not null
+      ,[Image2] image not null
+      ,[Image3] image not null
+      ,[ProfileAddDateTime] DateTimeoffset(7) not null
+      ,[CandiateEmailID] varchar(30) not null
+      ,[Saakha] varchar(30) not null
+
+  
+  -- Add other columns here as per your existing table
+);
+
+
+
+
+
+
+-- Set default value as 'Pending' for all applicable columns
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_RegisteredEmailId DEFAULT 'Pending' FOR RegisteredEmailId;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Password DEFAULT 'Pending' FOR Password;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_ConformPassword DEFAULT 'Pending' FOR ConformPassword;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Name DEFAULT 'Pending' FOR Name;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Surname DEFAULT 'Pending' FOR Surname;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Gender DEFAULT 'Pending' FOR Gender;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_PlaceOfBirth DEFAULT 'Pending' FOR PlaceOfBirth;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_CandiatePlace DEFAULT 'Pending' FOR CandiatePlace;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Raasi DEFAULT 'Pending' FOR Raasi;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Star DEFAULT 'Pending' FOR Star;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Occupation DEFAULT 'Pending' FOR Occupation;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_CandiateContact DEFAULT 'Pending' FOR CandiateContact;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_MotherName DEFAULT 'Pending' FOR MotherName;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_MotherOccupation DEFAULT 'Pending' FOR MotherOccupation;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_MotherPlace DEFAULT 'Pending' FOR MotherPlace;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_MotherContact DEFAULT 'Pending' FOR MotherContact;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_FatherName DEFAULT 'Pending' FOR FatherName;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_FatherOccupation DEFAULT 'Pending' FOR FatherOccupation;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_FatherPlace DEFAULT 'Pending' FOR FatherPlace;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_FatherContact DEFAULT 'Pending' FOR FatherContact;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_ViewAmountStatus DEFAULT 'Pending' FOR ViewAmountStatus;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_ProfileAmountStatus DEFAULT 'Pending' FOR ProfileAmountStatus;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_MainImage1 DEFAULT 'Pending' FOR MainImage1;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Image2 DEFAULT 'Pending' FOR Image2;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Image3 DEFAULT 'Pending' FOR Image3;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_CandiateEmailID DEFAULT 'Pending' FOR CandiateEmailID;
+ALTER TABLE sowmyaMatrimony_temp ADD CONSTRAINT DF_Saakha DEFAULT 'Pending' FOR Saakha;
+
+
+
+select OBJECT_NAME(object_id),definition from  sys.sql_modules where definition like '%SowmyaMatrimony%' ;
+
+
+select * FROM Sowmyamatrimony where RegisteredEmailId ='sowmyalalitha99@gmail.com' and Password = ConformPassword AND Password != 'Pending' 
+
+
+Delete SowmyaMatrimony where RegisteredEmailId='sowmyalalitha99@gmail.com' and Password!='Sowmya99@'
+
+
+
+  Alter table Sowmyamatrimony Add  BrideOrderId Nvarchar(50)
+  Alter table Sowmyamatrimony Add  BroomOrderId Nvarchar(50)
+  Alter table Sowmyamatrimony Add ProfileOrderId Nvarchar(50)
+  Alter table Sowmyamatrimony Add  BrideStatus Nvarchar(50)
+  Alter table Sowmyamatrimony Add  BroomStatus Nvarchar(50)
+  Alter table Sowmyamatrimony Add  PaymentId Nvarchar(50)
+  Alter table Sowmyamatrimony Add  BrideAmount Decimal(18,2)
+
+
+
+SELECT TOP (1000) [RegisteredEmailId]
+      ,[Password]
+      ,[ConformPassword]
+      ,[RegisteredDateTime]
+      ,[Name]
+      ,[Surname]
+      ,[Age]
+      ,[Gender]
+      ,[DOB]
+      ,[TOB]
+      ,[PlaceOfBirth]
+      ,[CandiatePlace]
+      ,[Raasi]
+      ,[Star]
+      ,[Occupation]
+      ,[CandiateContact]
+      ,[MotherName]
+      ,[MotherOccupation]
+      ,[MotherPlace]
+      ,[MotherContact]
+      ,[FatherName]
+      ,[FatherOccupation]
+      ,[FatherContact]
+      ,[FatherPlace]
+      
+      ,[CandiateEmailID]
+      ,[Saakha]
+      ,[MainImage1FilePath],[Image2FilePath],[Image3FilePath]
+      ,[MainImage11],[Image2],[Image3],[MainImage1]
+      ,[BrideOrderId] ,[BroomOrderId] ,[ProfileOrderId]
+
+      ,[BrideStatus]  ,[BroomStatus] ,[ProfileAmountStatus]
+      ,[BrideAmount],[BroomAmount],[ProfileAmount]
+      ,[PaymentId], [AddProfilePaymentId]
+      ,[ViewAmountStatus]
+      ,[PaymentDateTime],[ProfileAddDateTime] 
+  FROM [sowmyadb].[dbo].[SowmyaMatrimony]   
+
+
+
+
+
+
+ select * from SowmyaMatrimony
+
+  SELECT RegisteredEmailId , Name, Gender,BrideAmount,BrideStatus, PaymentId,PaymentDateTime  
+  FROM SowmyaMatrimony where Gender = 'Female' and RegisteredEmailId='sowmyalalitha99@gmail.com'
+
+  SELECT RegisteredEmailId ,Name,gender, BroomAmount, BroomStatus ,PaymentId,PaymentDateTime  
+  FROM SowmyaMatrimony where Gender = 'Male' and RegisteredEmailId='sowmyalalitha99@gmail.com'
+
+    SELECT RegisteredEmailId ,Name,gender, ProfileAmount, ProfileAmountStatus, AddProfilePaymentId,AddProfilePaymentDateTime  
+  FROM SowmyaMatrimony where RegisteredEmailId='sowmyalalitha99@gmail.com' 
+
+
+
+  SELECT RegisteredEmailId , Name, Gender,BrideAmount,BrideStatus, PaymentId,PaymentDateTime  
+  FROM SowmyaMatrimony where Gender = 'Female' and RegisteredEmailId='sowmyalalitha99@gmail.com' and BrideStatus='success' 
+  and BrideAmount='500'
+
+  SELECT RegisteredEmailId ,Name,gender, BroomAmount, BroomStatus ,PaymentId,PaymentDateTime  
+  FROM SowmyaMatrimony where Gender = 'Male' and RegisteredEmailId='sowmyalalitha99@gmail.com' and BroomStatus='success'
+   and BroomAmount='500'
+
+    SELECT RegisteredEmailId ,Name,gender, ProfileAmount, ProfileAmountStatus, AddProfilePaymentId,AddProfilePaymentDateTime  
+  FROM SowmyaMatrimony where RegisteredEmailId='sowmyalalitha99@gmail.com'  and ProfileAmountStatus='success' and ProfileAmount='1000'
+
+
+
+
+
+
+
+CREATE TRIGGER UpdateBrideStatusOnDate
+ON SowmyaMatrimony
+AFTER UPDATE, INSERT
+AS
+BEGIN
+   
+ SET NOCOUNT ON;
+
+   
+ -- Update rows where PaymentDateTime matches the condition
+  
+  UPDATE SowmyaMatrimony
+    SET 
+        
+BrideStatus = 'Pending',
+       
+ BrideAmount = 0,
+		
+PaymentId ='Pending',
+       
+ PaymentDateTime = GETDATE() -- Default to current date and time
+    
+WHERE 
+        PaymentDateTime = DATEADD(MONTH, 2, CAST(GETDATE() AS DATE)) and 
+Gender = 'Female' and ISNULL(BrideStatus, '') NOT IN ('NULL', 'Pending');
+
+ 
+
+UPDATE SowmyaMatrimony
+    SET 
+       
+ BroomStatus = 'Pending',
+ BroomAmount = 0,PaymentId ='Pending',
+ PaymentDateTime = GETDATE() -- Default to current date and time
+ 
+   WHERE 
+        PaymentDateTime = DATEADD(MONTH, 2, CAST(GETDATE() AS DATE)) and 
+Gender= 'Male' and ISNULL(BroomStatus, '') NOT IN ('NULL', 'Pending');
+
+
+		
+ UPDATE SowmyaMatrimony
+    SET 
+ 
+ProfileAmountStatus = 'Pending',
+ProfileAmount = 0,AddProfilePaymentId ='pending',
+AddProfilePaymentDateTime = GETDATE() -- Default to current date and time
+   
+ WHERE  AddProfilePaymentDateTime = DATEADD(MONTH, 2, CAST(GETDATE() AS DATE))   and 
+ISNULL(ProfileAmountStatus, '') NOT IN ('NULL', 'Pending');
+      
+
+END;
+
+
+ select getdate() as TodayDate
+  
+  SELECT 
+    GETDATE() AS CurrentDate, 
+    DATEADD(MONTH, 2, GETDATE()) AS DateAfterTwoMonths;
+

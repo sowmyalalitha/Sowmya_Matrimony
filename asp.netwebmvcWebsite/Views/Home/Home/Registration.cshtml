@@ -1,0 +1,252 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model User
+
+
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    @*<div class="registrationpage">*@
+        @*<partial name="Header" model="User">*@
+        <div class="welcomecontainer">
+
+            <div class="image"> <img src="../Images/marriageimage.jpg" ID="Image1" class="rounded float-start" />  </div>
+            <div class="registration">
+                <div class="heading"><h2><b><i>Registration</i></b></h2> </div>
+
+                <br>
+                @using (@Html.BeginForm("Registration", "Home", FormMethod.Post))
+                {
+                    <div class="form">
+
+                        <div class="form-container">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegisteredEmailId, new { @Text = "Email" })
+                                @Html.TextBoxFor(model => model.RegisteredEmailId, new { @id = "Emailtxt", @type = "Email", @placeholder = "Enter your Email", @Style = "border-radius:25px; border-color:black;" })
+                                <br>
+
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.RegisteredEmailId, "", new { @class = "text-danger" })
+
+                        <div class="form-container" style="flex-direction: row;">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, "Password: ")
+                                <div class="input-group">
+                                    @Html.PasswordFor(model => model.Password, new { @id = "Passwordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password", @style = "border-color:black;border-radius:25px;" })
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                            <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div> <br>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        <div class="form-container" style="flex-direction: row;">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConformPassword, "Conform Password: ")
+                                <div class="input-group">
+                                    @Html.PasswordFor(model => model.ConformPassword, new { @id = "conPasswordtxt", @type = "password", @class = "form-control", @placeholder = "Enter Password", @style = "border-color:black;border-radius:25px;" })
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" id="togglePasswordd">
+                                            <i id="togglePasswordIconn" class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <label id="passwordmatch" onchange="PasswordMatch">  </label><br><br>
+                        <input type="submit" value="Register" class="border-success" />
+                        @*@Html.ActionLink("Register", "RegisterDetails", "Home", null, new { @class = "btn btn-link" })*@
+
+                    </div>
+                }
+            </div>
+        </div>
+    @*</div>*@
+
+
+
+</body>
+
+
+<style>
+
+    .registrationpage {
+        height: auto;
+        width: auto;
+        /*height: auto;
+        width: auto;*/
+    }
+
+    .welcomecontainer {
+        height:100vh; /*95%;*/
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(202, 194, 188);
+    }
+
+        .welcomecontainer .image {
+            height: auto; /*     93.5vh;   */
+            min-width: 50%; /* Restrict the size */
+            flex: 1;
+            justify-content: center; /* Align the image to the right */
+            align-items: center; /* Center the image vertically */
+            border-radius: 0% 50% 50% 00%; /* right curve*/
+            border: 5px solid darkblue;
+            background-color: rgb(87, 84, 82);
+            position: relative;
+            overflow: hidden;
+            /* padding: 2px; */
+        }
+
+    img {
+        width: 100%; /* Make image responsive */
+        height: 100%;
+        justify-content: center; /* Align the image to the right */
+        align-items: center; /* Center the image vertically */
+        border-radius: 0% 50% 50% 00%; /* right curve*/
+        object-fit: fill;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        position: relative;
+        border-radius: 0% 50% 50% 00%; /* right curve*/
+        overflow: hidden;
+        border: 5px solid black;
+    }
+
+    .registration {
+        height: auto;
+        width: 100%;
+        background-color: rgb(202, 194, 188);
+    }
+
+    .heading {
+        color: darkblue;
+        text-align: center;
+    }
+
+    .form {
+        margin: 10px;
+        padding: 10px;
+        justify-content: center;
+        text-align: center;
+        border: 2px solid darkblue;
+        border-style: groove;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+        width: auto; /*100%;  */
+        margin: 5px;
+        align-items: center;
+    }
+
+
+        .form-group label {
+            justify-content: center;
+            align-items: center;
+            align-content: space-around;
+            justify-items: center;
+            padding: 10px;
+        }
+
+
+    .form-container {
+        display: flex;
+        flex-direction: row; /* Or use row if you want items side by side */
+        align-items: flex-start; /* Adjusts alignment of child elements */
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: row; /* Stacks label and input vertically */
+        align-items: flex-start;
+        gap: 5px; /* Adds space between label and input */
+    }
+
+    .alert {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px; /* Adds space between error messages */
+        color: rgb(230, 46, 46);
+        padding: 3px;
+        margin: 0;
+        font-size: 10px;
+    }
+
+    input {
+        border: 2px solid black;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 200px;
+        max-width: 200px;
+        height: 50px;
+    }
+
+        input.ng-invalid.ng-touched {
+            border-color: red;
+        }
+
+
+    small {
+        color: red;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("Passwordtxt");
+       const ConpasswordField= document.getElementById("conPasswordtxt");
+    const togglePasswordd = document.getElementById("togglePasswordd");
+        const toggleIcon = document.getElementById("togglePasswordIcon");
+    const toggleIconn = document.getElementById("togglePasswordIconn");
+
+
+        togglePassword.addEventListener("click", function () {
+            // Toggle password visibility
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+    });
+
+    togglePasswordd.addEventListener("click", function () {
+           if (ConpasswordField.type === "password") {
+                ConpasswordField.type = "text";
+                toggleIconn.classList.remove("fa-eye");
+                toggleIconn.classList.add("fa-eye-slash");
+            } else {
+                ConpasswordField.type = "password";
+                toggleIconn.classList.remove("fa-eye-slash");
+                toggleIconn.classList.add("fa-eye");
+            }
+        });
+    });</script>
+
+
+</html>

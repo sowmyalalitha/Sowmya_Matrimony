@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Error Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ErrorPage</title>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="head">
+        @Html.Partial("head")
+    </div>
+    <div class="Error">
+        <div class="cont">
+            <p style="color: red;">@ViewBag.Error</p><br />
+            @Html.ActionLink("Go To Login", "LoginPage", "Home", new { @id = "btn" })
+        </div>
+        
+    </div>
+    <style>
+        .Error {
+            background-color: black;
+            align-items: center;
+            padding:20px;
+            min-height:95vh;
+            margin:0px;
+
+        }
+        .cont{
+            justify-content:center;
+            align-items:baseline;
+            border:2px solid red;
+            padding:10%;
+            margin:10%;
+        }
+        #btn{
+            text-decoration:none;
+            padding:10px;
+            background-color:white;
+            color:red;
+            border:2px solid Red;
+        }
+
+        #btn:hover {
+            text-decoration: none;
+            padding: 10px;
+            background-color: red;
+            color: White;
+            border: 2px solid White;
+        }
+
+    </style>
+</body>
+</html>
+
